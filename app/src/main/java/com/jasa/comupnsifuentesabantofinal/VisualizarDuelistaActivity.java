@@ -2,6 +2,7 @@ package com.jasa.comupnsifuentesabantofinal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,14 +37,16 @@ public class VisualizarDuelistaActivity extends AppCompatActivity {
         VerCartas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent=new Intent(VisualizarDuelistaActivity.this,ListarCartasActivity.class);
+                intent.putExtra("idDuelista",idDuelista);
+                startActivity(intent);
             }
         });
 
         SincronizarCartas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+
             }
         });
     }
