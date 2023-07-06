@@ -23,7 +23,7 @@ public class ListarDuelistasActivity extends AppCompatActivity {
         List<Duelista> allDuelistas = db.dbDao().getAllDuelistas();
 
         listaDuelistas.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        //listaDuelistas.setAdapter(new DuelistasAdapter(allDuelistas));
+        listaDuelistas.setAdapter(new DuelistasAdapter(allDuelistas));
 
     }
 }
