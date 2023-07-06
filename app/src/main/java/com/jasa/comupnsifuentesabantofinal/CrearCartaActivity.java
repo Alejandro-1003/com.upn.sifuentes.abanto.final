@@ -31,13 +31,14 @@ public class CrearCartaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_carta);
 
-        botRegCarta=findViewById(R.id.botRegCarta);
-        botRegCoord=findViewById(R.id.botRegCoord);
-        botRegImagen=findViewById(R.id.botRegImagen);
+
 
         botRegCarta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                botRegCarta=findViewById(R.id.botRegCarta);
+                botRegCoord=findViewById(R.id.botRegCoord);
+                botRegImagen=findViewById(R.id.botRegImagen);
                 Carta cartaAux=new Carta();
                 cartaAux.idDuelista=idDuelista;
                 cartaAux.name=tvNombre.getText().toString();
