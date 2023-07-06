@@ -6,13 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/botCrearDuelista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="232dp"
+        android:text="Crear Duelistas"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/botVerDuelistas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="61dp"
+        android:text="Ver Duelistas"
+        app:layout_constraintStart_toStartOf="@+id/botCrearDuelista"
+        app:layout_constraintTop_toBottomOf="@+id/botCrearDuelista" />
+
+    <Button
+        android:id="@+id/botSincronizarDuelistas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="61dp"
+        android:text="Sincronizar"
+        app:layout_constraintStart_toStartOf="@+id/botVerDuelistas"
+        app:layout_constraintTop_toBottomOf="@+id/botVerDuelistas" />
 </androidx.constraintlayout.widget.ConstraintLayout>
