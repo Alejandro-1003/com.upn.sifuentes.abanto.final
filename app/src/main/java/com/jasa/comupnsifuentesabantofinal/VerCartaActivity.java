@@ -35,6 +35,8 @@ public class VerCartaActivity extends AppCompatActivity {
         idDefensaCarta=findViewById(R.id.idDefensaCarta);
         idImagenCarta=findViewById(R.id.idImagenCarta);
 
+        if(carta.size()==0)
+            return;
         idNombreCarta.setText(carta.get(0).name);
         idAtaqueCarta.setText(""+carta.get(0).ataque);
         idDefensaCarta.setText(""+carta.get(0).defensa);
