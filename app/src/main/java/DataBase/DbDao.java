@@ -19,4 +19,7 @@ public interface DbDao {
 
     @Query("SELECT * FROM Carta where idDuelista = :abc")
     List<Carta> findCartas(int abc);
+
+    @Query("SELECT * FROM Carta where id = :abc")
+    List<Carta> findCarta(int abc);
 }

@@ -6,4 +6,12 @@
     </style>
 
     <style name="Theme.Comupnsifuentesabantofinal" parent="Base.Theme.Comupnsifuentesabantofinal" />
+    <style name="Theme.Comupnsifuentesabantofinal.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.Comupnsifuentesabantofinal.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Comupnsifuentesabantofinal.PopupOverlay"
+        parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -1,5 +1,7 @@
 package adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jasa.comupnsifuentesabantofinal.R;
+import com.jasa.comupnsifuentesabantofinal.VerCartaActivity;
 
 import java.util.List;
 
@@ -34,10 +37,14 @@ public class CartasAdapter  extends RecyclerView.Adapter {
         TextView tvNombreCarta=holder.itemView.findViewById(R.id.tvNombreCarta);
         Button botVerCarta=holder.itemView.findViewById(R.id.botVerCartas);
         tvNombreCarta.setText(cartasEncontradas.get(position).name);
+        int auxposition=position;
         botVerCarta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Context context = view.getContext();
+                Intent intent = new Intent(context, VerCartaActivity.class);
+                intent.putExtra("idCarta", cartasEncontradas.get(auxposition).id);
+                context.startActivity(intent);
             }
         });
 

@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import entidades.Carta;
 import entidades.Duelista;
 
-@Database(entities = {Carta.class, Duelista.class}, version = 2)
+@Database(entities = {Carta.class, Duelista.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract DbDao dbDao();
 
