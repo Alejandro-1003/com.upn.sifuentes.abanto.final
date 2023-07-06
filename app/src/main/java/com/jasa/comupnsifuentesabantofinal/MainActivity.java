@@ -68,8 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<Duelista>> call, Throwable t) {
-                        Toast toast = Toast.makeText(MainActivity.this, "No se pudo sincronizar", Toast.LENGTH_SHORT);
-                        toast.show();
                     }
                 });
 
@@ -115,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
-                    
+
                 }
             });
         }

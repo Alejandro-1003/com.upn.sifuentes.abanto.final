@@ -1,5 +1,7 @@
 package adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jasa.comupnsifuentesabantofinal.R;
+import com.jasa.comupnsifuentesabantofinal.VisualizarDuelistaActivity;
 
 import java.util.List;
 
@@ -36,10 +39,15 @@ public class DuelistasAdapter extends RecyclerView.Adapter{
         Button itemDuelistaBoton=holder.itemView.findViewById(R.id.itemDuelistaBoton);
         tvDuelistaId.setText(""+allDuelistas.get(position).id);
         tvDuelistaNombre.setText(allDuelistas.get(position).name);
+        int auxposition=position;
         itemDuelistaBoton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Context context = view.getContext();
+                Intent intent = new Intent(context, VisualizarDuelistaActivity.class);
+                intent.putExtra("id",allDuelistas.get(auxposition).id);
+                intent.putExtra("nombre",allDuelistas.get(auxposition).name);
+                context.startActivity(intent);
             }
         });
 
