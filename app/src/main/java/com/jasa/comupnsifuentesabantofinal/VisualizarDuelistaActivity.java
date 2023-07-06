@@ -30,7 +30,9 @@ public class VisualizarDuelistaActivity extends AppCompatActivity {
         CrearCarta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent=new Intent(VisualizarDuelistaActivity.this,CrearCartaActivity.class);
+                intent.putExtra("idDuelista",idDuelista);
+                startActivity(intent);
             }
         });
 

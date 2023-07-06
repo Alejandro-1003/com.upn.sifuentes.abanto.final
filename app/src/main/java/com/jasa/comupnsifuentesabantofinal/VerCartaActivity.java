@@ -30,8 +30,6 @@ public class VerCartaActivity extends AppCompatActivity {
         AppDatabase db = AppDatabase.getInstance(VerCartaActivity.this);
         List<Carta> carta = db.dbDao().findCarta(idCarta);
 
-        carta.get(0);
-
         idNombreCarta=findViewById(R.id.idNombreCarta);
         idAtaqueCarta=findViewById(R.id.idAtaqueCarta);
         idDefensaCarta=findViewById(R.id.idDefensaCarta);
@@ -44,7 +42,7 @@ public class VerCartaActivity extends AppCompatActivity {
         try {
             Picasso.get().load(carta.get(0).imagen).into(idImagenCarta);
         }catch (Exception e){
-            
+
         }
 
 

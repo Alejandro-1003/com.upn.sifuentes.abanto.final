@@ -15,6 +15,13 @@
         android:theme="@style/Theme.Comupnsifuentesabantofinal"
         tools:targetApi="31">
         <activity
+            android:name=".CrearCartaActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ListarCartasActivity"
             android:exported="false">
             <meta-data

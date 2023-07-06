@@ -117,11 +117,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-        if(error==false){
-            Toast toast = Toast.makeText(MainActivity.this, "Se sincronizó la api con la base de datos", Toast.LENGTH_SHORT);
+        if(error==true){
+            Toast toast = Toast.makeText(MainActivity.this, "No se pudo sincronizar", Toast.LENGTH_SHORT);
             toast.show();
         }else{
-            Toast toast = Toast.makeText(MainActivity.this, "No se pudo sincronizar", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(MainActivity.this, "Se sincronizó la api con la base de datos", Toast.LENGTH_SHORT);
             toast.show();
         }
     }
