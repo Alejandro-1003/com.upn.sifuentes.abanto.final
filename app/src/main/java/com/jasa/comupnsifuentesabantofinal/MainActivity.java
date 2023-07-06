@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -19,6 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import servicios.DuelistaService;
 
 public class MainActivity extends AppCompatActivity {
+    Boolean error;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<List<Duelista>> call, Throwable t) {
-
+                        Toast toast = Toast.makeText(MainActivity.this, "No se pudo sincronizar", Toast.LENGTH_SHORT);
+                        toast.show();
                     }
                 });
 
@@ -96,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
     public void enviarDuelistas(){
         AppDatabase db = AppDatabase.getInstance(MainActivity.this);
         List<Duelista> listaDuelistas = db.dbDao().getAllDuelistas();
+        error=true;
         for(int i=0;i<listaDuelistas.size();i++){
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("https://64a49e01c3b509573b57af54.mockapi.io/")
@@ -105,12 +110,21 @@ public class MainActivity extends AppCompatActivity {
             services.createDuelista(listaDuelistas.get(i)).enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
+                    error=false;
                 }
 
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
+                    
                 }
             });
+        }
+        if(error==false){
+            Toast toast = Toast.makeText(MainActivity.this, "Se sincronizó la api con la base de datos", Toast.LENGTH_SHORT);
+            toast.show();
+        }else{
+            Toast toast = Toast.makeText(MainActivity.this, "No se pudo sincronizar", Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 }

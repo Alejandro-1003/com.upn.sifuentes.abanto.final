@@ -34,6 +34,8 @@ public class DuelistasAdapter extends RecyclerView.Adapter{
         TextView tvDuelistaId=holder.itemView.findViewById(R.id.itemDuelistaId);
         TextView tvDuelistaNombre=holder.itemView.findViewById(R.id.itemDuelistaNombre);
         Button itemDuelistaBoton=holder.itemView.findViewById(R.id.itemDuelistaBoton);
+        tvDuelistaId.setText(""+allDuelistas.get(position).id);
+        tvDuelistaNombre.setText(allDuelistas.get(position).name);
         itemDuelistaBoton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
