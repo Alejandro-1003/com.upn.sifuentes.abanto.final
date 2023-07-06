@@ -35,7 +35,7 @@ public class CartasAdapter  extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position){
         final CartasAdapter.CartasAdapterViewHolder viewHolder = (CartasAdapterViewHolder) holder;
         TextView tvNombreCarta=holder.itemView.findViewById(R.id.tvNombreCarta);
-        Button botVerCarta=holder.itemView.findViewById(R.id.botVerCartas);
+        Button botVerCarta=holder.itemView.findViewById(R.id.botVerCarta);
         tvNombreCarta.setText(cartasEncontradas.get(position).name);
         int auxposition=position;
         botVerCarta.setOnClickListener(new View.OnClickListener() {

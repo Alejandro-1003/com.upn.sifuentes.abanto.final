@@ -35,6 +35,12 @@ public class CrearCartaActivity extends AppCompatActivity {
         botRegCoord=findViewById(R.id.botRegCoord);
         botRegImagen=findViewById(R.id.botRegImagen);
 
+        tvNombre=findViewById(R.id.idTextBoxNombre);
+        tvAtaque=findViewById(R.id.idTextBoxAtaque);
+        tvDefensa=findViewById(R.id.idTextBoxDefensa);
+        tvCoord=findViewById(R.id.idTextBoxCoord);
+        tvImagen=findViewById(R.id.idTextBoxImagen);
+
 
         botRegCarta.setOnClickListener(new View.OnClickListener() {
             @Override
