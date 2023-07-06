@@ -7,9 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.List;
+
 import DataBase.AppDatabase;
+import entidades.Duelista;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import servicios.DuelistaService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,8 +53,64 @@ public class MainActivity extends AppCompatActivity {
                         .baseUrl("https://64a49e01c3b509573b57af54.mockapi.io/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
+                DuelistaService services =retrofit.create(DuelistaService.class);
+
+                services.getListDuelistas().enqueue(new Callback<List<Duelista>>() {
+                    @Override
+                    public void onResponse(Call<List<Duelista>> call, Response<List<Duelista>> response) {
+                        List<Duelista> duelistas=response.body();
+                        eliminar(duelistas);
+                        enviarDuelistas();
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Duelista>> call, Throwable t) {
+
+                    }
+                });
 
             }
         });
+    }
+    public void eliminar(List<Duelista> listaDuelistas){
+        for(int i=0;i<listaDuelistas.size();i++){
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("https://64a49e01c3b509573b57af54.mockapi.io/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            DuelistaService services =retrofit.create(DuelistaService.class);
+
+            services.deleteDuelista(listaDuelistas.get(i).id).enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+
+                }
+            });
+        }
+    }
+    public void enviarDuelistas(){
+        AppDatabase db = AppDatabase.getInstance(MainActivity.this);
+        List<Duelista> listaDuelistas = db.dbDao().getAllDuelistas();
+        for(int i=0;i<listaDuelistas.size();i++){
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("https://64a49e01c3b509573b57af54.mockapi.io/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            DuelistaService services =retrofit.create(DuelistaService.class);
+            services.createDuelista(listaDuelistas.get(i)).enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                }
+            });
+        }
     }
 }
