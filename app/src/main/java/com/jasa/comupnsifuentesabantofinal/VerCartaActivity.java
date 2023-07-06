@@ -26,6 +26,10 @@ public class VerCartaActivity extends AppCompatActivity {
 
         Bundle data=getIntent().getExtras();
         int idCarta=data.getInt("id");
+        String nombre=data.getString("nombre");
+        int ataque=data.getInt("ataque");
+        int defensa=data.getInt("defensa");
+        String ruta=data.getString("ruta");
 
         AppDatabase db = AppDatabase.getInstance(VerCartaActivity.this);
         List<Carta> carta = db.dbDao().findCarta(idCarta);
@@ -35,14 +39,13 @@ public class VerCartaActivity extends AppCompatActivity {
         idDefensaCarta=findViewById(R.id.idDefensaCarta);
         idImagenCarta=findViewById(R.id.idImagenCarta);
 
-        if(carta.size()==0)
-            return;
-        idNombreCarta.setText(carta.get(0).name);
-        idAtaqueCarta.setText(""+carta.get(0).ataque);
-        idDefensaCarta.setText(""+carta.get(0).defensa);
+
+        idNombreCarta.setText(nombre);
+        idAtaqueCarta.setText(""+ataque);
+        idDefensaCarta.setText(""+defensa);
 
         try {
-            Picasso.get().load(carta.get(0).imagen).into(idImagenCarta);
+            Picasso.get().load(ruta).into(idImagenCarta);
         }catch (Exception e){
 
         }

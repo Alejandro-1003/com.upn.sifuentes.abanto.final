@@ -52,8 +52,13 @@ public class CrearCartaActivity extends AppCompatActivity {
                 cartaAux.ataque=Integer.parseInt(tvAtaque.getText().toString());
                 cartaAux.imagen=tvImagen.getText().toString();
                 String[] parts = tvCoord.getText().toString().split(";");
-                cartaAux.latitud=parts[0];
-                cartaAux.longitud=parts[1];
+                if (parts.length>1){
+                    cartaAux.latitud=parts[0];
+                    cartaAux.longitud=parts[1];
+                }else{
+                    cartaAux.latitud=parts[0];
+                    cartaAux.longitud=parts[0];
+                }
                 AppDatabase db = AppDatabase.getInstance(CrearCartaActivity.this);
                 db.dbDao().createCarta(cartaAux);
 

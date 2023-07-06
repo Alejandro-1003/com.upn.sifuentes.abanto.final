@@ -44,10 +44,10 @@ public class CartasAdapter  extends RecyclerView.Adapter {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, VerCartaActivity.class);
                 intent.putExtra("idCarta", cartasEncontradas.get(auxposition).id);
-                intent.putExtra("nombre", cartasEncontradas.get(auxposition).id);
-                intent.putExtra("ataque", cartasEncontradas.get(auxposition).id);
-                intent.putExtra("defensa", cartasEncontradas.get(auxposition).id);
-                intent.putExtra("idCarta", cartasEncontradas.get(auxposition).id);
+                intent.putExtra("nombre", cartasEncontradas.get(auxposition).name);
+                intent.putExtra("ataque", cartasEncontradas.get(auxposition).ataque);
+                intent.putExtra("defensa", cartasEncontradas.get(auxposition).defensa);
+                intent.putExtra("ruta", cartasEncontradas.get(auxposition).imagen);
                 context.startActivity(intent);
             }
         });
