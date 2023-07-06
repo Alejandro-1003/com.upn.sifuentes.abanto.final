@@ -19,7 +19,7 @@ public class Carta {
     @ColumnInfo(name ="latitud")
     public String latitud;
     @ColumnInfo(name ="longitud")
-    public int longitud;
+    public String longitud;
     @PrimaryKey(autoGenerate = true)
     public int id;
 }

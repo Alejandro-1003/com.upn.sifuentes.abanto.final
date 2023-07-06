@@ -30,7 +30,7 @@
         android:layout_marginEnd="46dp"
         android:layout_marginBottom="43dp"
         android:background="#E89277"
-        android:inputType="text"
+        android:inputType="number"
         android:maxLines="1"
         android:textAlignment="center"
         android:textColor="#0027FF"

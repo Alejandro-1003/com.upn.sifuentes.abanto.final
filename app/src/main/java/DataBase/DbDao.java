@@ -14,8 +14,14 @@ public interface DbDao {
     @Query("Select * from Duelista")
     List<Duelista> getAllDuelistas();
 
+    @Query("Select * from Carta")
+    List<Carta> getAllCartas();
+
     @Insert
     void createDuelista(Duelista duelista);
+
+    @Insert
+    void createCarta(Carta carta);
 
     @Query("SELECT * FROM Carta where idDuelista = :abc")
     List<Carta> findCartas(int abc);
