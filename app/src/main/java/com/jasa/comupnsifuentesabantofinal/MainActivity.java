@@ -27,9 +27,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button crear,ver,sincronizar;
+        Button crear,ver,sincronizar,sincronizarDeApi;
         crear=findViewById(R.id.botCrearDuelista);
         ver=findViewById(R.id.botVerDuelistas);
+        sincronizarDeApi=findViewById(R.id.botSincronizarApiDuelistas);
         sincronizar=findViewById(R.id.botSincronizarDuelistas);
 
         crear.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +72,32 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+            }
+        });
+
+        sincronizarDeApi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppDatabase db = AppDatabase.getInstance(MainActivity.this);
+                db.dbDao().deleteDuelistas();
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("https://64a49e01c3b509573b57af54.mockapi.io/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                DuelistaService services =retrofit.create(DuelistaService.class);
+                services.getListDuelistas().enqueue(new Callback<List<Duelista>>() {
+                    @Override
+                    public void onResponse(Call<List<Duelista>> call, Response<List<Duelista>> response) {
+                        List<Duelista> duelistas=response.body();
+                        for(int i=0;i<duelistas.size();i++){
+                            db.dbDao().createDuelista(duelistas.get(i));
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Duelista>> call, Throwable t) {
+                    }
+                });
             }
         });
     }

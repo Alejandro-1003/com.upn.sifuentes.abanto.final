@@ -28,4 +28,7 @@ public interface DbDao {
 
     @Query("SELECT * FROM Carta where id = :abc")
     List<Carta> findCarta(int abc);
+
+    @Query("DELETE FROM Duelista")
+    void deleteDuelistas();
 }

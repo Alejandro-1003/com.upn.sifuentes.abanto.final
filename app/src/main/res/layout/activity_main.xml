@@ -36,4 +36,14 @@
         android:text="Sincronizar"
         app:layout_constraintStart_toStartOf="@+id/botVerDuelistas"
         app:layout_constraintTop_toBottomOf="@+id/botVerDuelistas" />
+
+    <Button
+        android:id="@+id/botSincronizarApiDuelistas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:text="Sincronizar de API"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botSincronizarDuelistas" />
 </androidx.constraintlayout.widget.ConstraintLayout>
