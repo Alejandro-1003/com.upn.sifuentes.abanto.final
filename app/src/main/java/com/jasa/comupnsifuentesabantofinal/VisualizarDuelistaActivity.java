@@ -64,31 +64,8 @@ public class VisualizarDuelistaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AppDatabase db = AppDatabase.getInstance(VisualizarDuelistaActivity.this);
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("https://64a49e01c3b509573b57af54.mockapi.io/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                CartaService services =retrofit.create(CartaService.class);
+                db.dbDao().getAllCartas();
 
-                services.getListCartas().enqueue(new Callback<List<Carta>>() {
-                    @Override
-                    public void onResponse(Call<List<Carta>> call, Response<List<Carta>> response) {
-                        List<Carta> cartas=response.body();
-                        eliminar(cartas);
-                        enviarCartas();
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<Carta>> call, Throwable t) {
-                    }
-                });
-            }
-        });
-
-        SincronizarCartasApi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AppDatabase db = AppDatabase.getInstance(VisualizarDuelistaActivity.this);
                 List<Carta> cartas=db.dbDao().getAllCartas();
                 for(int i=0;i<cartas.size();i++){
                     Retrofit retrofit = new Retrofit.Builder()
@@ -108,6 +85,35 @@ public class VisualizarDuelistaActivity extends AppCompatActivity {
                         }
                     });
                 }
+
+            }
+        });
+
+        SincronizarCartasApi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppDatabase db = AppDatabase.getInstance(VisualizarDuelistaActivity.this);
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("https://64a49e01c3b509573b57af54.mockapi.io/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                CartaService services =retrofit.create(CartaService.class);
+                services.getListCartas().enqueue(new Callback<List<Carta>>() {
+                    @Override
+                    public void onResponse(Call<List<Carta>> call, Response<List<Carta>> response) {
+                        db.dbDao().deleteDuelistas();
+                        List<Carta> cartas=response.body();
+                        for(int i=0;i<cartas.size();i++){
+                            db.dbDao().createCarta(cartas.get(i));
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Carta>> call, Throwable t) {
+
+                    }
+                });
+
             }
         });
     }

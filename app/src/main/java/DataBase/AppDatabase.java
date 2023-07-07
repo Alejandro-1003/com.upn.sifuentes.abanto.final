@@ -10,6 +10,7 @@ import entidades.Carta;
 import entidades.Duelista;
 
 @Database(entities = {Carta.class, Duelista.class}, version = 8)
+
 public abstract class AppDatabase extends RoomDatabase {
     public abstract DbDao dbDao();
 
