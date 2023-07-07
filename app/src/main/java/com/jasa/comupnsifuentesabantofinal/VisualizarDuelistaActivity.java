@@ -89,26 +89,25 @@ public class VisualizarDuelistaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AppDatabase db = AppDatabase.getInstance(VisualizarDuelistaActivity.this);
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("https://64a49e01c3b509573b57af54.mockapi.io/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                CartaService services =retrofit.create(CartaService.class);
-                services.getListCartas().enqueue(new Callback<List<Carta>>() {
-                    @Override
-                    public void onResponse(Call<List<Carta>> call, Response<List<Carta>> response) {
-                        db.dbDao().deleteCartas();
-                        List<Carta> cartas=response.body();
-                        for(int i=0;i<cartas.size();i++){
-                            db.dbDao().createCarta(cartas.get(i));
+                List<Carta> cartas=db.dbDao().getAllCartas();
+                for(int i=0;i<cartas.size();i++){
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl("https://64a49e01c3b509573b57af54.mockapi.io/")
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                    CartaService services =retrofit.create(CartaService.class);
+                    services.createCarta(cartas.get(i)).enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<List<Carta>> call, Throwable t) {
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
 
-                    }
-                });
+                        }
+                    });
+                }
             }
         });
     }
