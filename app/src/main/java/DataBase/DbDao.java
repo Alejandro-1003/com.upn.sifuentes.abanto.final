@@ -31,4 +31,7 @@ public interface DbDao {
 
     @Query("DELETE FROM Duelista")
     void deleteDuelistas();
+
+    @Query("DELETE FROM Carta")
+    void deleteCartas();
 }

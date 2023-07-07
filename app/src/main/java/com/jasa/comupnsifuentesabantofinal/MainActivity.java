@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AppDatabase db = AppDatabase.getInstance(MainActivity.this);
-                db.dbDao().deleteDuelistas();
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl("https://64a49e01c3b509573b57af54.mockapi.io/")
                         .addConverterFactory(GsonConverterFactory.create())
@@ -88,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 services.getListDuelistas().enqueue(new Callback<List<Duelista>>() {
                     @Override
                     public void onResponse(Call<List<Duelista>> call, Response<List<Duelista>> response) {
+                        db.dbDao().deleteDuelistas();
                         List<Duelista> duelistas=response.body();
                         for(int i=0;i<duelistas.size();i++){
                             db.dbDao().createDuelista(duelistas.get(i));
